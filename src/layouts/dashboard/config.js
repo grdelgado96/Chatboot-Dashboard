@@ -7,8 +7,18 @@ import UserPlusIcon from '@heroicons/react/24/solid/UserPlusIcon';
 import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
 import { SvgIcon } from '@mui/material';
-
+import ListBulletIcon from '@heroicons/react/24/solid/ListBulletIcon';
+//import SmartToyRoundedIcon from '@mui/icons-material/SmartToyRounded';
 export const items = [
+  {
+    title: 'Bots List',
+    path: '/bots_list',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ListBulletIcon />
+      </SvgIcon>
+    )
+  },
   {
     title: 'Overview',
     path: '/',
