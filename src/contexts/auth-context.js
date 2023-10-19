@@ -128,7 +128,7 @@ export const AuthProvider = (props) => {
   };
 
   const signIn = async (email, password) => {
-    if (email !== 'demo@devias.io' || password !== 'Password123!') {
+    if (email !== 'chatbot@gmail.com' || password !== '123456') {
       throw new Error('Please check your email and password');
     }
 
@@ -165,7 +165,7 @@ export const AuthProvider = (props) => {
     <AuthContext.Provider
       value={{
         ...state,
-        skip,
+      skip,
         signIn,
         signUp,
         signOut

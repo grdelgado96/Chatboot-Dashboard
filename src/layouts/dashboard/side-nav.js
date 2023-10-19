@@ -8,6 +8,7 @@ import {
   Button,
   Divider,
   Drawer,
+  Icon,
   Stack,
   SvgIcon,
   Typography,
@@ -17,6 +18,7 @@ import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
 import { items } from './config';
 import { SideNavItem } from './side-nav-item';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
@@ -52,9 +54,9 @@ export const SideNav = (props) => {
               width: 32
             }}
           >
-            <Logo />
+            <SmartToyIcon sx={{color:'white', fontSize:40}}/>
           </Box>
-          <Box
+           <Box
             sx={{
               alignItems: 'center',
               backgroundColor: 'rgba(255, 255, 255, 0.04)',
@@ -71,13 +73,13 @@ export const SideNav = (props) => {
                 color="inherit"
                 variant="subtitle1"
               >
-                Devias
+                Chatbot
               </Typography>
               <Typography
                 color="neutral.400"
                 variant="body2"
               >
-                Production
+                Demo
               </Typography>
             </div>
             <SvgIcon
@@ -86,7 +88,7 @@ export const SideNav = (props) => {
             >
               <ChevronUpDownIcon />
             </SvgIcon>
-          </Box>
+          </Box> 
         </Box>
         <Divider sx={{ borderColor: 'neutral.700' }} />
         <Box

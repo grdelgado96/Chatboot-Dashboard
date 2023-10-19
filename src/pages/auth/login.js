@@ -25,8 +25,8 @@ const Page = () => {
   const [method, setMethod] = useState('email');
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123!',
+      email: 'chatbot@gmail.com',
+      password: '123456',
       submit: null
     },
     validationSchema: Yup.object({
@@ -43,7 +43,7 @@ const Page = () => {
     onSubmit: async (values, helpers) => {
       try {
         await auth.signIn(values.email, values.password);
-        router.push('/');
+        router.push('/chat_bot');
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
@@ -62,7 +62,7 @@ const Page = () => {
   const handleSkip = useCallback(
     () => {
       auth.skip();
-      router.push('/');
+      router.push('/chat_bot');
     },
     [auth, router]
   );
@@ -71,7 +71,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Devias Kit
+          Login 
         </title>
       </Head>
       <Box
@@ -124,10 +124,7 @@ const Page = () => {
                 label="Email"
                 value="email"
               />
-              <Tab
-                label="Phone Number"
-                value="phoneNumber"
-              />
+              
             </Tabs>
             {method === 'email' && (
               <form
@@ -158,9 +155,7 @@ const Page = () => {
                     value={formik.values.password}
                   />
                 </Stack>
-                <FormHelperText sx={{ mt: 1 }}>
-                  Optionally you can skip.
-                </FormHelperText>
+                
                 {formik.errors.submit && (
                   <Typography
                     color="error"
@@ -183,7 +178,7 @@ const Page = () => {
                   fullWidth
                   size="large"
                   sx={{ mt: 3 }}
-                  onClick={handleSkip}
+                 onClick={handleSkip}
                 >
                   Skip authentication
                 </Button>
@@ -193,24 +188,12 @@ const Page = () => {
                   sx={{ mt: 3 }}
                 >
                   <div>
-                    You can use <b>demo@devias.io</b> and password <b>Password123!</b>
+                    You can use <b>chatbot@gmail.com</b> and password <b>123456</b>
                   </div>
                 </Alert>
               </form>
             )}
-            {method === 'phoneNumber' && (
-              <div>
-                <Typography
-                  sx={{ mb: 1 }}
-                  variant="h6"
-                >
-                  Not available in the demo
-                </Typography>
-                <Typography color="text.secondary">
-                  To prevent unnecessary costs we disabled this feature in the demo.
-                </Typography>
-              </div>
-            )}
+            
           </div>
         </Box>
       </Box>
