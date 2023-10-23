@@ -25,7 +25,8 @@ export const BotsList = (props) => {
         {bots.map((bot, index) => {
           const hasDivider = index < bots.length - 1;
           return (
-            <ListItem divider={hasDivider} key={bot.id}>
+            <ListItem divider={hasDivider} 
+            key={bot.id}>
               <ListItemAvatar>
                 {image ? (
                   <Box
@@ -48,7 +49,8 @@ export const BotsList = (props) => {
                   ></Box>
                 )}
               </ListItemAvatar>
-              <ListItemText primary={bot.name} primaryTypographyProps={{ variant: "subtitle1" }} />
+              <ListItemText primary={bot.name} 
+              primaryTypographyProps={{ variant: "subtitle1" }} />
 
               <CardActions sx={{ justifyContent: "flex-end" }}>
                 <Button

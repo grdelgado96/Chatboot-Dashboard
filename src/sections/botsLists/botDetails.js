@@ -35,11 +35,13 @@ export const BotDetails = (props) => {
             <TableBody>
               {docs.map((doc) => {
                 if(doc.bots.find((element)=>element === botNameDetail)){
-                return( <TableRow hover key={doc.id}>
+                return( <TableRow hover 
+                key={doc.id}>
                     <TableCell>{doc.name}</TableCell>
                     <TableCell>
-                      {doc.bots.map((bot) => {
-                        return <SeverityPill color={"success"}>{bot}</SeverityPill>;
+                      {doc.bots.map((bot,index) => {
+                        return <SeverityPill key={index} 
+                        color={"success"}>{bot}</SeverityPill>;
                       })}
                     </TableCell>
                   </TableRow>);

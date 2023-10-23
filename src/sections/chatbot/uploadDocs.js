@@ -31,7 +31,7 @@ export const UploadDocs = () => {
 
     
     selectedFiles.forEach((file, index) => {
-        console.log(`Archivo ${index + 1}:`, file.name);
+      //  console.log(`Archivo ${index + 1}:`, file.name);
       });
   };
 
@@ -55,7 +55,8 @@ export const UploadDocs = () => {
                   size="small"
                 ></Button> */}
                 <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteFile(index)}>
+                    <IconButton edge="end" 
+                    aria-label="delete" onClick={() => handleDeleteFile(index)}>
                       <DeleteIcon />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -68,7 +69,8 @@ export const UploadDocs = () => {
 
       <Divider />
       <CardActions>
-        <input type="file" multiple onChange={handleFileChange}></input>
+        <input type="file" 
+        multiple onChange={handleFileChange}></input>
         <Button
           fullWidth
           variant="text"

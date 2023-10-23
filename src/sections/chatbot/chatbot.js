@@ -1,108 +1,102 @@
-import {
-  Card,
-  CardContent,
-  Divider,
-  TextField,
-  Grid,
-  CardActions,
-  Button,
-  Paper,
-  CardHeader,
-  Typography,
-} from "@mui/material";
-//import * as React from "react";
-import React, { useState } from "react";
+import { Card, TextField, Grid, Button, Paper, Typography } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import Avatar from "@mui/material/Avatar";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-import { useCallback } from "react";
-let DUMMY_CHAT = [
-  {
-    primary: "Bot",
-    secondary: "Hello Emma. Is there something in particular we can help you with?",
-    person: "/assets/BotAvatar.png",
-  },
-  {
-    primary: "Emma",
-    secondary: "I need the latest sales report ",
-    person: "/assets/avatars/avatar-seo-hyeon-ji.png",
-  },
-  {
-    primary: "Bot",
-    secondary: "ok, do you need the full report or just the summary?",
-    person: "/assets/BotAvatar.png",
-  },
-  {
-    primary: "Emma",
-    secondary: "The full report",
-    person: "/assets/avatars/avatar-seo-hyeon-ji.png",
-  },
-];
-
-// export const ChatBot = () => {
-//   const [message, setMessage] = React.useState("");
-//   const messageHandler =(event)=>{
-//     setMessage(event.target.value);
-//     console.log(message);
-//   };
-//   return (
-//     <>
-//       <Card>
-//         <CardContent sx={{ pt: 0 }}>
-//           <Box sx={{ m: -1.5 }}>
-//             <List>
-//               {DUMMY_CHAT.map(({ primary, secondary, person }, index) => (
-//                 <ListItem key={index + person}>
-//                   <ListItemAvatar>
-//                     <Avatar alt="Profile Picture" src={person} />
-//                   </ListItemAvatar>
-//                   <ListItemText primary={primary} secondary={secondary} />
-//                 </ListItem>
-//               ))}
-//             </List>
-//             <Divider />
-
-//             <BottomNavigation showLabels>
-//               <TextField
-//                 fullWidth
-//                 label="Type here..."
-//                 name="message"
-//                 value={message}
-//                 onChangeCapture={messageHandler}
-//                // onChange={messageHandler}
-//               ></TextField>
-//               <BottomNavigationAction label="Send" icon={<SendRoundedIcon />} />
-//             </BottomNavigation>
-//           </Box>
-//         </CardContent>
-//       </Card>
-//     </>
-//   );
-// };
 
 export const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
+  const [inputTextValue, setInputTextValue] = useState("");
+  const listRef = useRef();
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputValue.trim() === "") return;
-
-    // Agrega el nuevo mensaje al estado
-    setMessages([...messages, { text: inputValue, user: "user" }]);
-    // Limpia el campo de entrada
-    setInputValue("");
+  const handleInputTextChange = (e) => {
+    setInputTextValue(e.target.value);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const question = {
+      question: inputValue,
+      context: inputTextValue,
+    };
+
+    // Adding loading message
+    setMessages([
+      ...messages,
+      { text: inputValue, user: "user" },
+      { text: "Loading...", user: "bot" },
+    ]);
+
+    try {
+      const answer = await answerQuestion(question);
+      setMessages((prevMessages) => {
+        const updatedMessages = [...prevMessages];
+        const loadingMessageIndex = updatedMessages.findIndex(
+          (message) => message.text === "Loading..."
+        );
+
+        if (loadingMessageIndex !== -1) {
+          // Replace loading message for real message
+          updatedMessages[loadingMessageIndex] = { text: answer.body, user: "bot" };
+        }
+
+        return updatedMessages;
+      });
+    } catch (error) {
+      console.error("Error processing response:", error);
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: "Error processing response", user: "bot" },
+      ]);
+    } finally {
+      // Reset input value
+      setInputValue("");
+      //update scroll to bottom
+      scrollToBottom();
+    }
+  };
+
+  const answerQuestion = async (question) => {
+    try {
+      const response = await fetch(
+        "https://ooqxnuffn0.execute-api.eu-central-1.amazonaws.com/chatbot123456789987654231123456",
+        {
+          method: "POST",
+          body: JSON.stringify(question),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "*/*",
+          },
+        }
+      );
+      const answer = await response.json();
+      scrollToBottom();
+
+      return answer;
+    } catch (error) {
+      console.error("Error processing response:", error);
+      return { body: "Error processing response" };
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <Card>
@@ -110,14 +104,17 @@ export const ChatBot = () => {
         <Typography variant="h5" style={{ marginBottom: "20px", color: "#333" }}>
           ChatBot
         </Typography>
-        <List style={{ padding: "10px", height: "400px", overflowY: "auto", marginBottom: "20px" }}>
+        <List
+          ref={listRef}
+          style={{ padding: "10px", height: "400px", overflowY: "auto", marginBottom: "20px" }}
+        >
           {messages.map((message, index) => (
             <ListItem key={index}>
-                <ListItemAvatar>
-                {message.user === 'user' ? (
+              <ListItemAvatar>
+                {message.user === "user" ? (
                   <Box
                     component="img"
-                    src={'assets/avatars/avatar-jane-rotanson.png'}
+                    src={"assets/avatars/avatar-jane-rotanson.png"}
                     sx={{
                       borderRadius: 1,
                       height: 48,
@@ -126,8 +123,8 @@ export const ChatBot = () => {
                   />
                 ) : (
                   <Box
-                  component="img"
-                    src={'/assets/BotAvatar.png'}
+                    component="img"
+                    src={"/assets/BotAvatar.png"}
                     sx={{
                       borderRadius: 1,
                       backgroundColor: "neutral.200",
@@ -146,18 +143,36 @@ export const ChatBot = () => {
 
         <form
           onSubmit={handleSubmit}
-          style={{ width: "100%", display: "flex", alignItems: "center" }}
+          style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
-          <TextField
-            variant="outlined"
-            fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
-            label="Type here..."
-          />
-          <Button type="submit" variant="text" color="primary" endIcon={<SendRoundedIcon />}>
-            Send
-          </Button>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                value={inputValue}
+                onChange={handleInputChange}
+                label="Type here..."
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                multiline
+                value={inputTextValue}
+                onChange={handleInputTextChange}
+                label="Type context here..."
+                required
+              />
+            </Grid>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Button type="submit" variant="text" color="primary" endIcon={<SendRoundedIcon />}>
+                Send
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Paper>
     </Card>
