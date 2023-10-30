@@ -63,9 +63,10 @@ const handleBotCheckboxChange = (fileIndex, bot) => {
                     <TableCell>
                       {["Bot1", "Bot2", "Bot3", "Bot4"].map((bot) => (
                         <FormControlLabel
+                        key={bot}
                           control={
                             <Checkbox
-                              key={bot}
+                              
                               checked={selectedBots[index]?.includes(bot)}
                               onChange={() => handleBotCheckboxChange(index,bot)}
                             />
