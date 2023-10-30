@@ -6,8 +6,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import { useAuth } from "src/hooks/use-auth";
 
 export const ChatBot = () => {
+  const auth = useAuth();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -32,7 +34,7 @@ export const ChatBot = () => {
     // Adding loading message
     setMessages([
       ...messages,
-      { text: inputValue, user: "user" },
+      { text: inputValue, user: auth.user.name },
       { text: "Loading...", user: "bot" },
     ]);
 
@@ -69,13 +71,13 @@ export const ChatBot = () => {
   const answerQuestion = async (question) => {
     try {
       const response = await fetch(
-        "https://ooqxnuffn0.execute-api.eu-central-1.amazonaws.com/chatbot123456789987654231123456",
+        "https://xqr1ol16qc.execute-api.eu-central-1.amazonaws.com/chatbot123456789987654231123456",
         {
           method: "POST",
           body: JSON.stringify(question),
           headers: {
             "Content-Type": "application/json",
-            Accept: "*/*",
+            "Accept": "*/*",
           },
         }
       );
@@ -111,10 +113,10 @@ export const ChatBot = () => {
           {messages.map((message, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
-                {message.user === "user" ? (
+                {message.user === auth.user.name ? (
                   <Box
                     component="img"
-                    src={"assets/avatars/avatar-jane-rotanson.png"}
+                    src={auth.user.avatar}
                     sx={{
                       borderRadius: 1,
                       height: 48,
@@ -124,7 +126,7 @@ export const ChatBot = () => {
                 ) : (
                   <Box
                     component="img"
-                    src={"/assets/BotAvatar.png"}
+                    src={"/assets/avatars/BotAvatar.png"}
                     sx={{
                       borderRadius: 1,
                       backgroundColor: "neutral.200",

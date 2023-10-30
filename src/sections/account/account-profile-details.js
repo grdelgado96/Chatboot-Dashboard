@@ -10,7 +10,7 @@ import {
   TextField,
   Unstable_Grid2 as Grid
 } from '@mui/material';
-
+import { useAuth } from 'src/hooks/use-auth';
 const states = [
   {
     value: 'alabama',
@@ -31,10 +31,11 @@ const states = [
 ];
 
 export const AccountProfileDetails = () => {
+  const auth = useAuth();
   const [values, setValues] = useState({
-    firstName: 'Anika',
-    lastName: 'Visser',
-    email: 'demo@devias.io',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: auth.user.email,
     phone: '',
     state: 'los-angeles',
     country: 'USA'

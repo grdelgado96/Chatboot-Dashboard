@@ -14,7 +14,7 @@ import {
   SvgIcon,
 } from "@mui/material";
 
-let image = "/assets/BotAvatar.png";
+let image = "/assets/avatars/BotAvatar.png";
 export const BotsList = (props) => {
   const { bots = [], sx } = props;
 

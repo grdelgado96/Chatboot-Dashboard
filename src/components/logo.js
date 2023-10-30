@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 
 export const Logo = () => {
   const theme = useTheme();
@@ -22,5 +22,6 @@ export const Logo = () => {
         fill={fillColor}
       />
     </svg>
+  
   );
 };

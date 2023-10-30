@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -23,9 +23,10 @@ const Page = () => {
   const router = useRouter();
   const auth = useAuth();
   const [method, setMethod] = useState('email');
+ 
   const formik = useFormik({
     initialValues: {
-      email: 'chatbot@gmail.com',
+      email: 'john.doe@gmail.com',
       password: '123456',
       submit: null
     },
@@ -188,7 +189,7 @@ const Page = () => {
                   sx={{ mt: 3 }}
                 >
                   <div>
-                    You can use <b>chatbot@gmail.com</b> and password <b>123456</b>
+                    You can use <b>john.doe@gmail.com</b> and password <b>123456</b>
                   </div>
                 </Alert>
               </form>
