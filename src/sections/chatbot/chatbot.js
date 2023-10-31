@@ -7,8 +7,9 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useAuth } from "src/hooks/use-auth";
-
+import { useTranslation } from "react-i18next";
 export const ChatBot = () => {
+  const {t}= useTranslation();
   const auth = useAuth();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -35,7 +36,7 @@ export const ChatBot = () => {
     setMessages([
       ...messages,
       { text: inputValue, user: auth.user.name },
-      { text: "Loading...", user: "bot" },
+      { text: t('loadText'), user: "bot" },
     ]);
 
     try {
@@ -43,7 +44,7 @@ export const ChatBot = () => {
       setMessages((prevMessages) => {
         const updatedMessages = [...prevMessages];
         const loadingMessageIndex = updatedMessages.findIndex(
-          (message) => message.text === "Loading..."
+          (message) => message.text === t('loadText')
         );
 
         if (loadingMessageIndex !== -1) {
@@ -104,7 +105,7 @@ export const ChatBot = () => {
     <Card>
       <Paper elevation={3} style={{ padding: "20px", borderRadius: "10px" }}>
         <Typography variant="h5" style={{ marginBottom: "20px", color: "#333" }}>
-          ChatBot
+          {t('chatbotTitle')}
         </Typography>
         <List
           ref={listRef}
@@ -154,7 +155,7 @@ export const ChatBot = () => {
                 fullWidth
                 value={inputValue}
                 onChange={handleInputChange}
-                label="Type here..."
+                label={t('typeLabel')}
                 required
               />
             </Grid>
@@ -165,13 +166,13 @@ export const ChatBot = () => {
                 multiline
                 value={inputTextValue}
                 onChange={handleInputTextChange}
-                label="Type context here..."
+                label={t('typeContextLabel')}
                 required
               />
             </Grid>
             <Grid item xs={12} style={{ textAlign: "center" }}>
               <Button type="submit" variant="text" color="primary" endIcon={<SendRoundedIcon />}>
-                Send
+                {t('sendButton')}
               </Button>
             </Grid>
           </Grid>

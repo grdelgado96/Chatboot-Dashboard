@@ -18,11 +18,13 @@ import {
 } from "@mui/material";
 import { Scrollbar } from "src/components/scrollbar";
 import { SeverityPill } from "src/components/severity-pill";
+import { useTranslation } from "react-i18next";
 export const BotDetails = (props) => {
   const { sx, bots = [], id } = props;
+  const {t}= useTranslation();
   return (
     <Card sx={sx}>
-      <CardHeader title="Documents List" />
+      <CardHeader title={t('documentListHeader')} />
       <List>
         {bots.map(
           (bot) =>
@@ -31,7 +33,7 @@ export const BotDetails = (props) => {
               <ListItem divider={index < bot.docs.length - 1} key={index}>
                 <ListItemText primary={doc} primaryTypographyProps={{ variant: "subtitle1" }} />
                 <CardActions sx={{ justifyContent: "flex-end" }}>
-                  <Button>Remove</Button>
+                  <Button>{t('removeButton')}</Button>
                 </CardActions>
               </ListItem>
             ))

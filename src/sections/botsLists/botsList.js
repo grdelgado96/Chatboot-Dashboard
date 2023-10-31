@@ -14,20 +14,20 @@ import {
   SvgIcon,
 } from "@mui/material";
 import Link from "next/link";
-
+import { useTranslation } from "react-i18next";
 let image = "/assets/avatars/BotAvatar.png";
 export const BotsList = (props) => {
   const { bots = [], sx } = props;
-
+  const { t } = useTranslation();
   return (
     <Card sx={sx}>
-      <CardHeader title="Bots List" />
+      <CardHeader title={t('titles.botsList')}/>
       <List>
         {bots.map((bot, index) => {
           const hasDivider = index < bots.length - 1;
           return (
-            <Link href={`/bots_list/${bot.id}`}>
-              <ListItem divider={hasDivider} key={bot.id}>
+            <Link href={`/bots_list/${bot.id}`} key={bot.id}>
+              <ListItem divider={hasDivider} >
                 <ListItemAvatar>
                   {image ? (
                     <Box

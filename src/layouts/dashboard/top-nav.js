@@ -17,6 +17,7 @@ import { alpha } from '@mui/material/styles';
 import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
 import { useAuth } from 'src/hooks/use-auth';
+import { useTranslation } from 'react-i18next';
 
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
@@ -26,7 +27,11 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const accountPopover = usePopover();
+const { i18n } = useTranslation();
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <>
       <Box
@@ -80,7 +85,7 @@ export const TopNav = (props) => {
             direction="row"
             spacing={2}
           >
-            {/* <Tooltip title="Contacts">
+             {/* <Tooltip title="Contacts">
               <IconButton>
                 <SvgIcon fontSize="small">
                   <UsersIcon />
@@ -99,7 +104,19 @@ export const TopNav = (props) => {
                   </SvgIcon>
                 </Badge>
               </IconButton>
-            </Tooltip> */}
+            </Tooltip>  */}
+             <Tooltip title="English">
+              <IconButton onClick={() => changeLanguage('en')}>
+                
+              <img src={'/assets/reino-unido.png'} alt="english" style={{ width: '24px' }}/>
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Spanish">
+              <IconButton onClick={() => changeLanguage('es')}>
+                
+              <img src={'/assets/espana.png'} alt="spanish" style={{ width: '24px' }}/>
+              </IconButton>
+            </Tooltip>
             <Avatar
               onClick={accountPopover.handleOpen}
               ref={accountPopover.anchorRef}

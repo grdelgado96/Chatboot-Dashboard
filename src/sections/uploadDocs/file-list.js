@@ -13,8 +13,9 @@ import {
   Divider,
   FormControlLabel,
 } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 const FileList = (props) => {
+  const{t}= useTranslation();
   const { files, onRemoveFile, sx } = props;
   const [selectedBots, setSelectedBots] = useState([]);
 
@@ -46,14 +47,14 @@ const handleBotCheckboxChange = (fileIndex, bot) => {
     <Card sx={sx}>
     
         
-          <CardHeader title="Uploaded files:" />
+          <CardHeader title={t('fileListHeader')} />
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>File Name</TableCell>
-                  <TableCell>Bots</TableCell>
-                  <TableCell>Actions</TableCell>
+                  <TableCell>{t('nameTableRow')}</TableCell>
+                  <TableCell>{t('botsTableRow')}</TableCell>
+                  <TableCell>{t('actionTableRow')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -77,7 +78,7 @@ const handleBotCheckboxChange = (fileIndex, bot) => {
                     </TableCell>
                     <TableCell>
                       <Button variant="text" onClick={handleRemoveSelectedBots}>
-                        Remove
+                        {t('removeButton')}
                       </Button>
                     </TableCell>
                   </TableRow>

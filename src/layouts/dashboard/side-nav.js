@@ -16,11 +16,13 @@ import {
 } from '@mui/material';
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
-import { items } from './config';
+//import { items } from './config';
 import { SideNavItem } from './side-nav-item';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import { SidebarItems } from './config';
 
 export const SideNav = (props) => {
+  const items = SidebarItems();
   const { open, onClose } = props;
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));

@@ -11,9 +11,16 @@ import { SvgIcon } from "@mui/material";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 import SmartToyRoundedIcon from "@mui/icons-material/SmartToyRounded";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-export const items = [
+import { useTranslation } from "react-i18next";
+
+export const SidebarItems = () => {
+  const { t } = useTranslation();
+
+
+
+ const items = [
   {
-    title: "Bots List",
+    title: t('titles.botsList'),
     path: "/bots_list",
     icon: (
       <SvgIcon fontSize="small">
@@ -22,7 +29,7 @@ export const items = [
     ),
   },
   {
-    title: "ChatBot",
+    title: t('titles.chatBot'),
     path: "/chat_bot",
     icon: (
       <SvgIcon fontSize="small">
@@ -31,7 +38,7 @@ export const items = [
     ),
   },
   {
-    title: "Upload Documents",
+    title: t('titles.uploadDocuments'),
     path: "/upload_docs",
     icon: (
       <SvgIcon fontSize="small">
@@ -39,35 +46,8 @@ export const items = [
       </SvgIcon>
     ),
   },
-  // {
-  //   title: 'Overview',
-  //   path: '/overview',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <ChartBarIcon />
-  //     </SvgIcon>
-  //   )
-  // },
-  // {
-  //   title: 'Customers',
-  //   path: '/customers',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <UsersIcon />
-  //     </SvgIcon>
-  //   )
-  // },
-  // {
-  //   title: 'Companies',
-  //   path: '/companies',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <ShoppingBagIcon />
-  //     </SvgIcon>
-  //   )
-  // },
   {
-    title: 'Account',
+    title:  t('titles.account'),
     path: '/account',
     icon: (
       <SvgIcon fontSize="small">
@@ -75,40 +55,6 @@ export const items = [
       </SvgIcon>
     )
   },
-  // {
-  //   title: 'Settings',
-  //   path: '/settings',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <CogIcon />
-  //     </SvgIcon>
-  //   )
-  // },
-  // {
-  //   title: 'Login',
-  //   path: '/auth/login',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <LockClosedIcon />
-  //     </SvgIcon>
-  //   )
-  // },
-  // {
-  //   title: 'Register',
-  //   path: '/auth/register',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <UserPlusIcon />
-  //     </SvgIcon>
-  //   )
-  // },
-  // {
-  //   title: 'Error',
-  //   path: '/404',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <XCircleIcon />
-  //     </SvgIcon>
-  //   )
-  // }
 ];
+return items;
+};

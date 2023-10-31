@@ -14,9 +14,10 @@ import {
   IconButton,
 } from "@mui/material";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 export const UploadDocs = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
- 
+ const {t}=useTranslation();
   const handleFileChange = (event) => {
     const files = event.target.files;
     setSelectedFiles([...selectedFiles, ...files]);
@@ -37,7 +38,7 @@ export const UploadDocs = () => {
 
   return (
     <Card>
-      <CardHeader title="Documents in use:" />
+      <CardHeader title={t('uploadDocHeader')} />
       {selectedFiles.length > 0 && (
       <List style={{overflow:'auto',height: "400px"}}>
         {selectedFiles.map((file, index) => {
@@ -77,7 +78,7 @@ export const UploadDocs = () => {
           endIcon={<DriveFolderUploadRoundedIcon></DriveFolderUploadRoundedIcon>}
           onClick={handleUpload}
         >
-          Upload File
+          {t('uploadFileButton')}
         </Button>
       </CardActions>
     </Card>

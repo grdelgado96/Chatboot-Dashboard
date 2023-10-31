@@ -3,15 +3,21 @@ import { ChatBot } from "src/sections/chatbot/chatbot"
 import { Box, Container, Stack, Typography, Unstable_Grid2 as Grid} from "@mui/material";
 import Head from 'next/head';
 import { UploadDocs } from 'src/sections/chatbot/uploadDocs';
-
+import { useTranslation } from 'react-i18next';
 
 const Page = ()=>
 {
+  const {t}= useTranslation();
+  
 return(
     <>
     <Head>
-      <title>ChatBot</title>
+     <div>
+        <p>{t('greeting')}</p>
+      </div>
     </Head>
+    
+   
     <Box
       component="main"
       sx={{

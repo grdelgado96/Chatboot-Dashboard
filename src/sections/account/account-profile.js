@@ -9,17 +9,18 @@ import {
   Typography,
 } from "@mui/material";
 import { useAuth } from "src/hooks/use-auth";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { useState } from "react";
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
+import { useTranslation } from "react-i18next";
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
   height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
+  overflow: "hidden",
+  position: "absolute",
   bottom: 0,
   left: 0,
-  whiteSpace: 'nowrap',
+  whiteSpace: "nowrap",
   width: 1,
 });
 //need to change when authentication is complete
@@ -33,14 +34,14 @@ const user = {
 export const AccountProfile = () => {
   const auth = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleUpload=(event)=>{
+  const { t } = useTranslation();
+  const handleUpload = (event) => {
     const file = event.target.files[0];
     const imageUrl = URL.createObjectURL(file);
     setSelectedImage(imageUrl);
     auth.user.avatar = imageUrl;
-    console.log(auth.user.avatar)
-   //add logic to upload image to server
+    console.log(auth.user.avatar);
+    //add logic to upload image to server
   };
   return (
     <Card>
@@ -73,9 +74,9 @@ export const AccountProfile = () => {
       </CardContent>
       <Divider />
       <CardActions>
-        <Button fullWidth component="label" variant="text" >
-          Upload picture
-          <VisuallyHiddenInput type="file" accept=".jpg, .jpeg, .png" onChange={handleUpload}/>
+        <Button fullWidth component="label" variant="text">
+        {t("uploadPictureButton")}
+          <VisuallyHiddenInput type="file" accept=".jpg, .jpeg, .png" onChange={handleUpload} />
         </Button>
       </CardActions>
     </Card>
