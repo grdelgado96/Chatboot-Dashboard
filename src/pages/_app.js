@@ -1,3 +1,4 @@
+import '../i18n';
 import Head from 'next/head';
 import { CacheProvider } from '@emotion/react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -10,6 +11,7 @@ import { createTheme } from 'src/theme';
 import { createEmotionCache } from 'src/utils/create-emotion-cache';
 import 'simplebar-react/dist/simplebar.min.css';
 
+//import i18n from '../i18n';
 const clientSideEmotionCache = createEmotionCache();
 
 const SplashScreen = () => null;
@@ -27,7 +29,7 @@ const App = (props) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <title>
-          Devias Kit
+          ChatBot
         </title>
         <meta
           name="viewport"

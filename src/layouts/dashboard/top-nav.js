@@ -18,11 +18,11 @@ import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
 import { useAuth } from 'src/hooks/use-auth';
 import { useTranslation } from 'react-i18next';
-
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
 
 export const TopNav = (props) => {
+  const {t}= useTranslation();
   const auth=useAuth();
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
@@ -105,13 +105,13 @@ const { i18n } = useTranslation();
                 </Badge>
               </IconButton>
             </Tooltip>  */}
-             <Tooltip title="English">
+             <Tooltip title={t('english')}>
               <IconButton onClick={() => changeLanguage('en')}>
                 
               <img src={'/assets/reino-unido.png'} alt="english" style={{ width: '24px' }}/>
               </IconButton>
             </Tooltip>
-            <Tooltip title="Spanish">
+            <Tooltip title={t('spanish')}>
               <IconButton onClick={() => changeLanguage('es')}>
                 
               <img src={'/assets/espana.png'} alt="spanish" style={{ width: '24px' }}/>
@@ -125,7 +125,7 @@ const { i18n } = useTranslation();
                 height: 40,
                 width: 40
               }}
-              src={auth.user.avatar}
+              src={auth.user ? auth.user.avatar : undefined}
             />
           </Stack>
         </Stack>

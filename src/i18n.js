@@ -11,6 +11,24 @@ const resources = {
         uploadDocuments: "Upload Documents",
         account: "Account",
       },
+      //Login Section
+      emailValidation: "Must be a valid email",
+      emailRequired: "Email is required",
+      passwordRequired: "Password is required",
+      loginTitle: "Login",
+      dontHaveAccount: "Don't have an account? ",
+      register: "Register",
+      emailLoginLabel: "Email",
+      passwordLoginLabel: "Password",
+      continueButton: "Continue",
+      Skipbutton: "Skip authentication",
+      userInfo: "You can use john.doe@gmail.com and password 123456",
+      //Register section
+      registerTitle: "Register",
+      haveAccount: "Already have an account? ",
+      login: "Log in",
+      nameLabel: "Name",
+      nameRequired: "Name is required",
       //Account Section
       accountHeadTitle: "Account | Chatbot",
       account: "Account",
@@ -28,13 +46,14 @@ const resources = {
       //Bots List Section
       documentListHeader: "Documents List",
       removeButton: "Remove",
+      returnButton: "Return",
       //Chatbot Section
       uploadDocHeader: "Documents in use:",
       uploadFileButton: "Upload File",
       typeLabel: "Type here...",
       typeContextLabel: "Type context here...",
       sendButton: "Send",
-      loadText: 'Typing...',
+      loadText: "Typing...",
       //Upload Documents Section
       dropzoneText: "Drag and drop files here",
       dropzoneButton: "Select Multiple Files",
@@ -42,6 +61,12 @@ const resources = {
       nameTableRow: "File Name",
       botsTableRow: "Bots",
       actionTableRow: "Actions",
+      //Top Nav Section:
+      english: "English",
+      spanish: "Spanish",
+      //Account Popover Section
+      accountTitle: "Account",
+      signoutButton: "Sign out",
     },
   },
   es: {
@@ -52,6 +77,24 @@ const resources = {
         uploadDocuments: "Subir Documentos",
         account: "Cuenta",
       },
+      //Login Section
+      emailValidation: "El correo electrónico debe ser válido",
+      emailRequired: "El correo electrónico es requerido",
+      passwordRequired: "La contraseña es requerida",
+      loginTitle: "Acceder",
+      dontHaveAccount: "¿No tiene una cuenta? ",
+      register: "Registrarse",
+      emailLoginLabel: "Correo electrónico",
+      passwordLoginLabel: "Contraseña",
+      continueButton: "Continuar",
+      Skipbutton: "Saltar autenticación",
+      userInfo: "Puede usar john.doe@gmail.com y contraseña 123456",
+      //Register section
+      registerTitle: "Registrarse",
+      haveAccount: "¿Ya tiene una cuenta?",
+      login: "Acceder",
+      nameLabel: "Nombre",
+      nameRequired: "El nombre es requerido",
       //Account Section
       accountHeadTitle: "Cuenta | Chatbot",
       account: "Cuenta",
@@ -69,13 +112,14 @@ const resources = {
       //Bots List Section
       documentListHeader: "Lista de Documentos",
       removeButton: "Eliminar",
+      returnButton: "Regresar",
       //Chatbot Section
       uploadDocHeader: "Documentos en uso:",
       uploadFileButton: "Subir Archivo",
       typeLabel: "Escribe aquí...",
       typeContextLabel: "Esccribe el contexto aquí...",
       sendButton: "Enviar",
-      loadText: 'Escribiendo...',
+      loadText: "Escribiendo...",
       //Upload Documents Section
       dropzoneText: "Arrastra y suelta archivos aquí",
       dropzoneButton: "Selecciona multiples archivos",
@@ -83,9 +127,14 @@ const resources = {
       nameTableRow: "Nombre de Archivo ",
       botsTableRow: "Bots",
       actionTableRow: "Acciones",
+      //Top Nav Section:
+      english: "Inglés",
+      spanish: "Español",
+      //Account Popover Section
+      accountTitle: "Cuenta",
+      signoutButton: "Desconectar",
     },
-    },
-  
+  },
 };
 
 i18n.use(initReactI18next).init({

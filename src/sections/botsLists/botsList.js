@@ -12,6 +12,7 @@ import {
   ListItemAvatar,
   ListItemText,
   SvgIcon,
+  Typography,
 } from "@mui/material";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
@@ -26,7 +27,8 @@ export const BotsList = (props) => {
         {bots.map((bot, index) => {
           const hasDivider = index < bots.length - 1;
           return (
-            <Link href={`/bots_list/${bot.id}`} key={bot.id}>
+            
+            <Link href={`/bots_list/${bot.id}`} key={bot.id} passHref >
               <ListItem divider={hasDivider} >
                 <ListItemAvatar>
                   {image ? (
@@ -51,8 +53,11 @@ export const BotsList = (props) => {
                   )}
                 </ListItemAvatar>
                 <ListItemText
-                  primary={bot.name}
-                  primaryTypographyProps={{ variant: "subtitle1" }}
+                  primary={
+                    <Typography variant="subtitle1" color="textPrimary" sx={{ borderBottom: "none" }}>
+                      {bot.name}
+                    </Typography>
+                  }
                 />
               </ListItem>
             </Link>

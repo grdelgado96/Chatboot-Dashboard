@@ -19,11 +19,13 @@ import {
 import { Scrollbar } from "src/components/scrollbar";
 import { SeverityPill } from "src/components/severity-pill";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 export const BotDetails = (props) => {
   const { sx, bots = [], id } = props;
   const {t}= useTranslation();
   return (
-    <Card sx={sx}>
+    <>
+     <Card sx={sx}>
       <CardHeader title={t('documentListHeader')} />
       <List>
         {bots.map(
@@ -39,7 +41,18 @@ export const BotDetails = (props) => {
             ))
         )}
       </List>
+      
     </Card>
+    <Box sx={{ textAlign: "center", marginTop: 2 }}>
+        <Link href={"/bots_list"} passHref>
+          <Button variant="contained" color="primary">
+            {t("returnButton")}
+          </Button>
+        </Link>
+      </Box>
+    </>
+   
+    
   );
 };
 

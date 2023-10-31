@@ -8,7 +8,9 @@ import ListItemText from "@mui/material/ListItemText";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useAuth } from "src/hooks/use-auth";
 import { useTranslation } from "react-i18next";
+
 export const ChatBot = () => {
+  
   const {t}= useTranslation();
   const auth = useAuth();
   const [messages, setMessages] = useState([]);
@@ -155,7 +157,7 @@ export const ChatBot = () => {
                 fullWidth
                 value={inputValue}
                 onChange={handleInputChange}
-                label={t('typeLabel')}
+                placeholder={t('typeLabel')}
                 required
               />
             </Grid>
@@ -166,7 +168,7 @@ export const ChatBot = () => {
                 multiline
                 value={inputTextValue}
                 onChange={handleInputTextChange}
-                label={t('typeContextLabel')}
+                placeholder={t('typeContextLabel')}
                 required
               />
             </Grid>

@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import Head from 'next/head';
-import NextLink from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useCallback, useEffect, useState } from "react";
+import Head from "next/head";
+import NextLink from "next/link";
+import { useRouter } from "next/navigation";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import {
   Alert,
   Box,
@@ -14,130 +14,96 @@ import {
   Tab,
   Tabs,
   TextField,
-  Typography
-} from '@mui/material';
-import { useAuth } from 'src/hooks/use-auth';
-import { Layout as AuthLayout } from 'src/layouts/auth/layout';
-
+  Typography,
+} from "@mui/material";
+import { useAuth } from "src/hooks/use-auth";
+import { Layout as AuthLayout } from "src/layouts/auth/layout";
+import { useTranslation } from "react-i18next";
 const Page = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const auth = useAuth();
-  const [method, setMethod] = useState('email');
- 
+  const [method, setMethod] = useState("email");
+
   const formik = useFormik({
     initialValues: {
-      email: 'john.doe@gmail.com',
-      password: '123456',
-      submit: null
+      email: "john.doe@gmail.com",
+      password: "123456",
+      submit: null,
     },
     validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email('Must be a valid email')
-        .max(255)
-        .required('Email is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required('Password is required')
+      email: Yup.string().email(t("emailValidation")).max(255).required(t("emailRequired")),
+      password: Yup.string().max(255).required(t("passwordRequired")),
     }),
     onSubmit: async (values, helpers) => {
       try {
         await auth.signIn(values.email, values.password);
-        router.push('/chat_bot');
+        router.push("/chat_bot");
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
         helpers.setSubmitting(false);
       }
-    }
+    },
   });
 
-  const handleMethodChange = useCallback(
-    (event, value) => {
-      setMethod(value);
-    },
-    []
-  );
+  const handleMethodChange = useCallback((event, value) => {
+    setMethod(value);
+  }, []);
 
-  const handleSkip = useCallback(
-    () => {
-      auth.skip();
-      router.push('/chat_bot');
-    },
-    [auth, router]
-  );
+  const handleSkip = useCallback(() => {
+    auth.skip();
+    router.push("/chat_bot");
+  }, [auth, router]);
 
   return (
     <>
       <Head>
-        <title>
-          Login 
-        </title>
+        <title>{t("loginTitle")}</title>
       </Head>
       <Box
         sx={{
-          backgroundColor: 'background.paper',
-          flex: '1 1 auto',
-          alignItems: 'center',
-          display: 'flex',
-          justifyContent: 'center'
+          backgroundColor: "background.paper",
+          flex: "1 1 auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
             maxWidth: 550,
             px: 3,
-            py: '100px',
-            width: '100%'
+            py: "100px",
+            width: "100%",
           }}
         >
           <div>
-            <Stack
-              spacing={1}
-              sx={{ mb: 3 }}
-            >
-              <Typography variant="h4">
-                Login
-              </Typography>
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
-                Don&apos;t have an account?
-                &nbsp;
+            <Stack spacing={1} sx={{ mb: 3 }}>
+              <Typography variant="h4">{t("loginTitle")}</Typography>
+              <Typography color="text.secondary" variant="body2">
+                {t("dontHaveAccount")}
                 <Link
                   component={NextLink}
                   href="/auth/register"
                   underline="hover"
                   variant="subtitle2"
                 >
-                  Register
+                  {t("register")}
                 </Link>
               </Typography>
             </Stack>
-            <Tabs
-              onChange={handleMethodChange}
-              sx={{ mb: 3 }}
-              value={method}
-            >
-              <Tab
-                label="Email"
-                value="email"
-              />
-              
+            <Tabs onChange={handleMethodChange} sx={{ mb: 3 }} value={method}>
+              <Tab label={t("emailLoginLabel")} value="email" />
             </Tabs>
-            {method === 'email' && (
-              <form
-                noValidate
-                onSubmit={formik.handleSubmit}
-              >
+            {method === "email" && (
+              <form noValidate onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
                     helperText={formik.touched.email && formik.errors.email}
-                    label="Email Address"
+                    label={t('emailLabel')}
                     name="email"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
@@ -148,7 +114,7 @@ const Page = () => {
                     error={!!(formik.touched.password && formik.errors.password)}
                     fullWidth
                     helperText={formik.touched.password && formik.errors.password}
-                    label="Password"
+                    label={t('passwordLoginLabel')}
                     name="password"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
@@ -156,45 +122,23 @@ const Page = () => {
                     value={formik.values.password}
                   />
                 </Stack>
-                
+
                 {formik.errors.submit && (
-                  <Typography
-                    color="error"
-                    sx={{ mt: 3 }}
-                    variant="body2"
-                  >
+                  <Typography color="error" sx={{ mt: 3 }} variant="body2">
                     {formik.errors.submit}
                   </Typography>
                 )}
-                <Button
-                  fullWidth
-                  size="large"
-                  sx={{ mt: 3 }}
-                  type="submit"
-                  variant="contained"
-                >
-                  Continue
+                <Button fullWidth size="large" sx={{ mt: 3 }} type="submit" variant="contained">
+                  {t('continueButton')}
                 </Button>
-                <Button
-                  fullWidth
-                  size="large"
-                  sx={{ mt: 3 }}
-                 onClick={handleSkip}
-                >
-                  Skip authentication
+                <Button fullWidth size="large" sx={{ mt: 3 }} onClick={handleSkip}>
+                  {t('Skipbutton')}
                 </Button>
-                <Alert
-                  color="primary"
-                  severity="info"
-                  sx={{ mt: 3 }}
-                >
-                  <div>
-                    You can use <b>john.doe@gmail.com</b> and password <b>123456</b>
-                  </div>
+                <Alert color="primary" severity="info" sx={{ mt: 3 }}>
+                  <div>{t("userInfo")}</div>
                 </Alert>
               </form>
             )}
-            
           </div>
         </Box>
       </Box>
@@ -202,10 +146,6 @@ const Page = () => {
   );
 };
 
-Page.getLayout = (page) => (
-  <AuthLayout>
-    {page}
-  </AuthLayout>
-);
+Page.getLayout = (page) => <AuthLayout>{page}</AuthLayout>;
 
 export default Page;
