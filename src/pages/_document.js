@@ -2,7 +2,7 @@ import { Children } from "react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import { createEmotionCache } from "src/utils/create-emotion-cache";
-import './i18n'; // Importa tu configuración de i18next
+import '../i18n'; // Importa tu configuración de i18next
 
 // const Favicon = () => (
 //   <>
