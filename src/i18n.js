@@ -67,6 +67,8 @@ const resources = {
       //Account Popover Section
       accountTitle: "Account",
       signoutButton: "Sign out",
+      //Analytics Section
+      analytics: 'Analytics',
     },
   },
   es: {
@@ -133,6 +135,8 @@ const resources = {
       //Account Popover Section
       accountTitle: "Cuenta",
       signoutButton: "Desconectar",
+      //Analytics Section
+      analytics: 'Analítica',
     },
   },
 };

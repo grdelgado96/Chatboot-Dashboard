@@ -25,6 +25,7 @@
     "@mui/system": "5.11.9",
     "@mui/x-date-pickers": "5.0.19",
     "apexcharts": "3.37.0",
+    "d3": "^7.8.5",
     "date-fns": "2.29.3",
     "formik": "2.2.9",
     "i18next": "^23.6.0",

@@ -1,17 +1,12 @@
-import ChartBarIcon from "@heroicons/react/24/solid/ChartBarIcon";
-import CogIcon from "@heroicons/react/24/solid/CogIcon";
-import LockClosedIcon from "@heroicons/react/24/solid/LockClosedIcon";
-import ShoppingBagIcon from "@heroicons/react/24/solid/ShoppingBagIcon";
 import UserIcon from "@heroicons/react/24/solid/UserIcon";
-import UserPlusIcon from "@heroicons/react/24/solid/UserPlusIcon";
-import UsersIcon from "@heroicons/react/24/solid/UsersIcon";
-import XCircleIcon from "@heroicons/react/24/solid/XCircleIcon";
 import { SvgIcon } from "@mui/material";
 //import ListBulletIcon from '@heroicons/react/24/solid/ListBulletIcon';
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 import SmartToyRoundedIcon from "@mui/icons-material/SmartToyRounded";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useTranslation } from "react-i18next";
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+import ForumIcon from '@mui/icons-material/Forum';
 
 export const SidebarItems = () => {
   const { t } = useTranslation();
@@ -19,15 +14,6 @@ export const SidebarItems = () => {
 
 
  const items = [
-  {
-    title: t('titles.botsList'),
-    path: "/bots_list",
-    icon: (
-      <SvgIcon fontSize="small">
-        <SmartToyRoundedIcon />
-      </SvgIcon>
-    ),
-  },
   {
     title: t('titles.chatBot'),
     path: "/chat_bot",
@@ -38,6 +24,16 @@ export const SidebarItems = () => {
     ),
   },
   {
+    title: t('titles.botsList'),
+    path: "/bots_list",
+    icon: (
+      <SvgIcon fontSize="small">
+        <SmartToyRoundedIcon />
+      </SvgIcon>
+    ),
+  },
+  
+  {
     title: t('titles.uploadDocuments'),
     path: "/upload_docs",
     icon: (
@@ -45,6 +41,24 @@ export const SidebarItems = () => {
         <UploadFileIcon />
       </SvgIcon>
     ),
+  },
+  {
+    title:  t('analytics'),
+    path: '/analytics',
+    icon: (
+      <SvgIcon fontSize="small">
+        <AnalyticsIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title:  'Chats',
+    path: '/chats',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ForumIcon />
+      </SvgIcon>
+    )
   },
   {
     title:  t('titles.account'),
@@ -55,6 +69,7 @@ export const SidebarItems = () => {
       </SvgIcon>
     )
   },
+  
 ];
 return items;
 };

@@ -73,9 +73,9 @@ export const SideNav = (props) => {
             <div>
               <Typography
                 color="inherit"
-                variant="subtitle1"
+                variant="h6"
               >
-                Chatbot
+                GENIA
               </Typography>
               <Typography
                 color="neutral.400"
