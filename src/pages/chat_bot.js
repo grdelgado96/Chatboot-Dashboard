@@ -13,7 +13,7 @@ return(
     <>
     <Head>
      <div>
-        <p>{t('greeting')}</p>
+        <p>{t('titles.chatbot')}</p>
       </div>
     </Head>
     

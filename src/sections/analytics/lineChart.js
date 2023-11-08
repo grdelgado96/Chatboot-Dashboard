@@ -10,14 +10,18 @@ export const LineChart = (sx) => {
   useEffect(() => {
     //setting up svg
     const w = 400;
-    const h = 150;
+    const h = 200;
     const svg = d3
       .select(svgRef.current)
       .attr("width", w)
       .attr("heigth", h)
       // .style("background", "#d3d3d3")
-      .style("margin-left", "50")
+      .style("margin-top", "20")
+      .style("margin-rigth", "20")
+      .style("margin-bottom", "30")
+      .style("margin-left", "40")
       .style("overflow", "visible");
+     
 
     //setting the scaling
     const xScale = d3

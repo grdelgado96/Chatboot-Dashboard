@@ -10,6 +10,7 @@ const resources = {
         chatBot: "ChatBot",
         uploadDocuments: "Upload Documents",
         account: "Account",
+        chats: "Chats",
       },
       //Login Section
       emailValidation: "Must be a valid email",
@@ -68,7 +69,7 @@ const resources = {
       accountTitle: "Account",
       signoutButton: "Sign out",
       //Analytics Section
-      analytics: 'Analytics',
+      analytics: "Analytics",
     },
   },
   es: {
@@ -78,6 +79,7 @@ const resources = {
         chatBot: "ChatBot",
         uploadDocuments: "Subir Documentos",
         account: "Cuenta",
+        chats: "Chats",
       },
       //Login Section
       emailValidation: "El correo electrónico debe ser válido",
@@ -136,7 +138,7 @@ const resources = {
       accountTitle: "Cuenta",
       signoutButton: "Desconectar",
       //Analytics Section
-      analytics: 'Analítica',
+      analytics: "Analítica",
     },
   },
 };
