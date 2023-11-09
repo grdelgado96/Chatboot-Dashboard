@@ -70,6 +70,13 @@ const resources = {
       signoutButton: "Sign out",
       //Analytics Section
       analytics: "Analytics",
+      barChart: "Bar Chart",
+      lineChart: "Line Chart",
+      linePlot: "Line Plot",
+      pieChart: "Pie Chart",
+      //Chats Section
+      date: "Date",
+      time: "Time",
     },
   },
   es: {
@@ -139,6 +146,13 @@ const resources = {
       signoutButton: "Desconectar",
       //Analytics Section
       analytics: "Analítica",
+      barChart: "Gráfico de barras",
+      lineChart: "Gráfico de lineas",
+      linePlot: "Diagrama de lineas",
+      pieChart: "Gráfico circular",
+      //Chats Section
+      date: "Fecha",
+      time: "Hora",
     },
   },
 };

@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import React, { useState, useRef, useEffect } from "react";
 import * as d3 from "d3";
 import { Card, CardContent, CardHeader } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 export const LineChart = (sx) => {
   const [data] = useState([25, 50, 35, 15, 94, 10]);
   const svgRef = useRef();
-
+  const { t } = useTranslation();
   useEffect(() => {
     //setting up svg
     const w = 400;
@@ -21,7 +21,6 @@ export const LineChart = (sx) => {
       .style("margin-bottom", "30")
       .style("margin-left", "40")
       .style("overflow", "visible");
-     
 
     //setting the scaling
     const xScale = d3
@@ -55,7 +54,7 @@ export const LineChart = (sx) => {
   }, [data]);
   return (
     <Card sx={sx}>
-      <CardHeader title='Line Chart'></CardHeader>
+      <CardHeader title={t("lineChart")}></CardHeader>
       <CardContent>
         <svg ref={svgRef}></svg>
       </CardContent>

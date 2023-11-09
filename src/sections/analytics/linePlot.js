@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@mui/material";
 import * as d3 from "d3";
-import {useRef, useEffect} from "react";
-
+import { useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 export default function LinePlot({
   sx,
   data,
@@ -10,8 +10,9 @@ export default function LinePlot({
   marginTop = 20,
   marginRight = 20,
   marginBottom = 30,
-  marginLeft = 40
+  marginLeft = 40,
 }) {
+  const { t } = useTranslation();
   const gx = useRef();
   const gy = useRef();
   const x = d3.scaleLinear([0, data.length - 1], [marginLeft, width - marginRight]);
@@ -21,16 +22,18 @@ export default function LinePlot({
   useEffect(() => void d3.select(gy.current).call(d3.axisLeft(y)), [gy, y]);
   return (
     <Card sx={sx}>
-      <CardHeader title='Line Plot'/>
+      <CardHeader title={t("linePlot")} />
       <CardContent>
-      <svg width={width} height={height}>
-      <g ref={gx} transform={`translate(0,${height - marginBottom})`} />
-      <g ref={gy} transform={`translate(${marginLeft},0)`} />
-      <path fill="none" stroke="currentColor" stroke-width="1.5" d={line(data)} />
-      <g fill="white" stroke="currentColor" stroke-width="1.5">
-        {data.map((d, i) => (<circle key={i} cx={x(i)} cy={y(d)} r="2.5" />))}
-      </g>
-    </svg>
+        <svg width={width} height={height}>
+          <g ref={gx} transform={`translate(0,${height - marginBottom})`} />
+          <g ref={gy} transform={`translate(${marginLeft},0)`} />
+          <path fill="none" stroke="currentColor" stroke-width="1.5" d={line(data)} />
+          <g fill="white" stroke="currentColor" stroke-width="1.5">
+            {data.map((d, i) => (
+              <circle key={i} cx={x(i)} cy={y(d)} r="2.5" />
+            ))}
+          </g>
+        </svg>
       </CardContent>
     </Card>
   );

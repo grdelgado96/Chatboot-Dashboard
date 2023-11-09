@@ -48,7 +48,7 @@ export const ChatList = (props) => {
               <ListItemText
                 primary={chat.title}
                 primaryTypographyProps={{ variant: "subtitle1" }}
-                secondary={`Date: ${chat.date} Time: ${chat.time}`}
+                secondary={`${t('date')}: ${chat.date} ${t('time')}: ${chat.time}`}
                 secondaryTypographyProps={{ variant: "body2" }}
               />
               {/* <CardActions sx={{ justifyContent: "flex-end" }}>

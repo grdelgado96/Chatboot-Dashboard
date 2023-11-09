@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { Card, CardContent, CardHeader } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 export const BarChart = (sx) => {
   const chartRef = useRef();
-
+  const { t } = useTranslation();
   useEffect(() => {
     const data = [10, 100, 15, 30, 80];
 
@@ -44,7 +44,7 @@ export const BarChart = (sx) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Bar Chart" />
+      <CardHeader title={t("barChart")} />
       <CardContent>
         <div ref={chartRef}></div>
       </CardContent>

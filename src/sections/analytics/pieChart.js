@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { Card, CardContent, CardHeader } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 export const PieChart = ({ sx, data, width, height, radius }) => {
   const svgRef = useRef();
-
+  const { t } = useTranslation();
   useEffect(() => {
     // Crear un objeto de arco para el gráfico de pastel
-    const arc = d3
-      .arc()
-      .innerRadius(0)
-      .outerRadius(radius);
+    const arc = d3.arc().innerRadius(0).outerRadius(radius);
 
     // Crear una función de generador de gráficos de pastel
     const pie = d3.pie().value((d) => d);
@@ -25,24 +22,24 @@ export const PieChart = ({ sx, data, width, height, radius }) => {
     const pieData = pie(data);
 
     // Agregar arcos al gráfico de pastel
-    const arcs = g.selectAll("path")
+    const arcs = g
+      .selectAll("path")
       .data(pieData)
       .enter()
       .append("path")
       .attr("d", arc)
       .attr("fill", (d, i) => d3.schemeCategory10[i]) // Colores de la paleta D3
-      .on('mouseover', function (event, d) {
+      .on("mouseover", function (event, d) {
         const expandedArc = d3
           .arc()
           .innerRadius(0)
           .outerRadius(radius + 20);
 
-        d3.select(this).transition().attr('d', expandedArc);
-      
+        d3.select(this).transition().attr("d", expandedArc);
       })
-      .on('mouseout', function (event, d) {
+      .on("mouseout", function (event, d) {
         // Al retirar el cursor, vuelve al tamaño original
-        d3.select(this).transition().attr('d', arc);
+        d3.select(this).transition().attr("d", arc);
       });
 
     // Agregar etiquetas a cada sección del gráfico de pastel
@@ -58,11 +55,10 @@ export const PieChart = ({ sx, data, width, height, radius }) => {
 
   return (
     <Card sx={sx}>
-        <CardHeader title='Pie Chart'/>
-        <CardContent>
+      <CardHeader title={t("pieChart")} />
+      <CardContent>
         <svg ref={svgRef} width={width} height={height}></svg>
-        </CardContent>
-      
+      </CardContent>
     </Card>
   );
 };

@@ -1,11 +1,10 @@
 import { Card, TextField, Grid, Button, Paper, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useAuth } from "src/hooks/use-auth";
 import { useTranslation } from "react-i18next";
 
@@ -51,7 +50,7 @@ export const Chat = (props) => {
                 )}
               </ListItemAvatar>
               <ListItemText>
-                <strong>{message.user}:</strong> {message.message}
+                <strong>{(message.user === 'bot')? 'bot': auth.user.name}:</strong> {message.message}
               </ListItemText>
             </ListItem>
           ))}
