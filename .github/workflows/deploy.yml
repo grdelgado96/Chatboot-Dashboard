@@ -24,6 +24,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Agregar este paso para verificar las variables de entorno
+      - name: Verify AWS credentials
+        run: |
+          echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+          echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
+
+
       - name: Build and Export
         run: |
           npm run build && npm run export
