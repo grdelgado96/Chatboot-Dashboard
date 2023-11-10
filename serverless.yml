@@ -6,7 +6,7 @@ plugins:
 provider:
   name: aws
   deploymentMethod: direct
-  runtime: nodejs14.x
+  runtime: nodejs20.1.0.x
   region: eu-central-1
 
 functions:
