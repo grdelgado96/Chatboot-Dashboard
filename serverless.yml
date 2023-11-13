@@ -13,6 +13,11 @@ plugins:
   - serverless-s3-deploy
 
 custom:
-  client:
-    bucketName: chatbot-demo-bucket
-    distributionFolder: out/
+  assets:
+    auto: true
+    targets:
+       - bucket: chatbot-demo-bucket
+         empty: true
+         files:
+          - source: out/
+          
