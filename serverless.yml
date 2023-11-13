@@ -1,17 +1,18 @@
 service: my-next-app
 
-plugins:
-  - serverless-s3-deploy
-
 provider:
   name: aws
-  deploymentMethod: direct
+  # deploymentMethod: direct
   runtime: nodejs18.x
   region: eu-central-1
 
 functions:
   # Aquí puedes definir funciones Lambda si las necesitas
+
+plugins:
+  - serverless-s3-deploy
+
 custom:
-  s3Deploy:
+  client:
     bucketName: chatbot-demo-bucket
-    region: eu-central-1
+    distributionFolder: out
