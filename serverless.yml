@@ -19,5 +19,5 @@ custom:
        - bucket: chatbot-demo-bucket
          empty: true
          files:
-          - source: out/
+          - source: ./out/
           
