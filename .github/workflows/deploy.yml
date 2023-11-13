@@ -16,10 +16,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
-      - name: Install Serverless Framework
-        run: npm install -g serverless
+      # - name: Install Serverless Framework
+      #   run: npm install -g serverless
 
       - name: Install dependencies
         run: npm install
@@ -31,17 +31,24 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
 
 
-      - name: Build and Export
+      # - name: Build and Export
+      #   run: |
+      #     npm run build && npm run export
+
+      # - name: Deploy to S3
+      #   run: |
+      #     aws s3 sync .out/ s3://chatbot-demo-bucket
+
+      # - name: Deploy to AWS
+      #   run: npm run deploy     
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Build and deploy to AWS S3
         run: |
           npm run build && npm run export
-
-      - name: Deploy to S3
-        run: |
-          aws s3 sync .out/ s3://chatbot-demo-bucket
-
-      - name: Deploy to AWS
-        run: npm run deploy     
+          aws s3 sync .out/ s3://chatbot-demo-bucket --region eu-central-1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
