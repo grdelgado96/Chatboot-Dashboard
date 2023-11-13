@@ -15,4 +15,4 @@ plugins:
 custom:
   client:
     bucketName: chatbot-demo-bucket
-    distributionFolder: out
+    distributionFolder: out/
