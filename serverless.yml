@@ -14,7 +14,7 @@ plugins:
 
 custom:
   assets:
-    auto: true
+    #auto: true
     targets:
        - bucket: chatbot-demo-bucket
          empty: true
