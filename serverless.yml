@@ -2,7 +2,7 @@ service: my-next-app
 
 provider:
   name: aws
-  # deploymentMethod: direct
+  deploymentMethod: direct
   runtime: nodejs18.x
   region: eu-central-1
 
@@ -10,14 +10,18 @@ functions:
   # Aquí puedes definir funciones Lambda si las necesitas
 
 plugins:
-  - serverless-s3-deploy
+  #- serverless-s3-deploy
+  - serverless-finch
 
 custom:
-  assets:
-    #auto: true
-    targets:
-       - bucket: chatbot-demo-bucket
-         empty: true
-         files:
-          - source: ./out/
-          
+  # assets:
+  #   #auto: true
+  #   targets:
+  #      - bucket: chatbot-demo-bucket
+  #        prefix: subdir
+  #        files:
+  #         - source: ../out/
+  client:
+    bucketName: chatbot-demo-bucket
+    distributionFolder: /out  
+    #region: eu-central-1

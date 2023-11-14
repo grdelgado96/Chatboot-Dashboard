@@ -6,7 +6,8 @@
     },
     "provider": {
       "name": "aws",
-      "runtime": "nodejs14.x",
+      "deploymentMethod": "direct",
+      "runtime": "nodejs18.x",
       "region": "eu-central-1",
       "stage": "dev",
       "versionFunctions": true,
@@ -179,13 +180,14 @@
       }
     },
     "custom": {
-      "s3Deploy": {
+      "finch": {
+        "basePath": "../out/",
         "bucketName": "chatbot-demo-bucket",
         "region": "eu-central-1"
       }
     },
     "plugins": [
-      "serverless-s3-deploy"
+      "serverless-finch"
     ],
     "pluginsData": {},
     "functions": {},
@@ -193,11 +195,11 @@
     "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
       "service": "my-next-app",
-      "plugins": {
-        "$ref": "$[\"service\"][\"plugins\"]"
-      },
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "plugins": {
+        "$ref": "$[\"service\"][\"plugins\"]"
       },
       "custom": {
         "$ref": "$[\"service\"][\"custom\"]"
@@ -208,7 +210,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/my-next-app/dev/1699568263968-2023-11-09T22:17:43.968Z",
+    "artifactDirectoryName": "serverless/my-next-app/dev/1699976588014-2023-11-14T15:43:08.014Z",
     "artifact": ""
   }
 }
