@@ -10,17 +10,9 @@ functions:
   # Aquí puedes definir funciones Lambda si las necesitas
 
 plugins:
-  #- serverless-s3-deploy
   - serverless-finch
 
 custom:
-  # assets:
-  #   #auto: true
-  #   targets:
-  #      - bucket: chatbot-demo-bucket
-  #        prefix: subdir
-  #        files:
-  #         - source: ../out/
   client:
     bucketName: chatbot-demo-bucket
     distributionFolder: /out  
