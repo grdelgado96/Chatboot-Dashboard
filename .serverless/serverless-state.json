@@ -180,10 +180,9 @@
       }
     },
     "custom": {
-      "finch": {
-        "basePath": "../out/",
+      "client": {
         "bucketName": "chatbot-demo-bucket",
-        "region": "eu-central-1"
+        "distributionFolder": "/out"
       }
     },
     "plugins": [
@@ -210,7 +209,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/my-next-app/dev/1699976588014-2023-11-14T15:43:08.014Z",
+    "artifactDirectoryName": "serverless/my-next-app/dev/1699981077584-2023-11-14T16:57:57.584Z",
     "artifact": ""
   }
 }

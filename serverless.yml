@@ -24,4 +24,4 @@ custom:
   client:
     bucketName: chatbot-demo-bucket
     distributionFolder: /out  
-    #region: eu-central-1
+    region: eu-central-1
