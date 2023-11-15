@@ -25,9 +25,6 @@ jobs:
         run: |
           npm run build && npm run export
 
-      - name: Check AWS CLI version
-        run: aws --version
-
       - name: Deploy with Serverless
         run: |
           npm install -g serverless
